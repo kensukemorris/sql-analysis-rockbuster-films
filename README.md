@@ -25,8 +25,8 @@ the main questions they’d l ike to answer:
 
 ## Deliverables
 
-Queries- 
+Queries
 
-Data dictionary - 
+Data dictionary 
 
 Presentation - [Answer to business question 5](https://public.tableau.com/app/profile/kensuke2842/viz/TopCountriesandTotalPayments/BQ5-Top_Countries)
