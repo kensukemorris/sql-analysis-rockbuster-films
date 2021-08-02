@@ -1,0 +1,60 @@
+-- Buiness question - which countries are Rockbuster customers based in?
+
+-- Main Query
+SELECT A.country,	
+       COUNT(customer_id) AS customer_count
+FROM country A	
+INNER JOIN city B ON A.country_id = B.country_id	
+INNER JOIN address C ON B.city_id = C.city_id	
+INNER JOIN customer D ON C.address_id = D.address_id	
+GROUP BY A.country	
+ORDER BY customer_count DESC	
+LIMIT 10;	
+
+
+-- Additional Analysis - What are the customer counts for the cities of the top countries?
+--top countries
+SELECT B.city,			
+	     COUNT(customer_id) AS customer_count		
+FROM country A			
+INNER JOIN city B ON A.country_id = B.country_id			
+INNER JOIN address C ON B.city_id = C.city_id			
+INNER JOIN customer D ON C.address_id = D.address_id			
+WHERE A.country IN ('India',			
+                    'China',	
+                    'United States',	
+                    'Japan',	
+                    'Mexico',	
+                    'Brazil',	
+                    'Russian Federation',	
+                    'Philippines',	
+                    'Turkey',	
+                    'Indonesia')	
+GROUP BY B.city			
+ORDER BY customer_count DESC			
+LIMIT 10;			
+
+
+-- top cities
+SELECT B.city,		
+		   A.country,
+	     COUNT(customer_id) AS customer_count	
+FROM country A		
+INNER JOIN city B ON A.country_id = B.country_id		
+INNER JOIN address C ON B.city_id = C.city_id		
+INNER JOIN customer D ON C.address_id = D.address_id		
+WHERE A.country IN ('India',		
+                    'China',
+                    'United States',
+                    'Japan',
+                    'Mexico',
+                    'Brazil',
+                    'Russian Federation',
+                    'Philippines',
+                    'Turkey',
+                    'Indonesia')
+GROUP BY B.city, A.country		
+ORDER BY customer_count DESC		
+LIMIT 10;		
+
+
