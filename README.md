@@ -25,7 +25,7 @@ the main questions they’d l ike to answer:
 
 ## Deliverables
 
-Quesries- 
+Queries- 
 
 Data dictionary - 
 
