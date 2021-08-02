@@ -1,5 +1,6 @@
-Business question	1 (BQ1) - Which movies contributed the most/least to revenue gain?					
+--Business question 1 (BQ1) - Which movies contributed the most/least to revenue gain?					
 
+--Most revenue
 SELECT film.film_id,		
       film.title,
       film.release_year,
@@ -12,3 +13,50 @@ INNER JOIN payment ON rental.rental_id = payment.rental_id
 GROUP BY film.film_id		
 ORDER BY total_revenue DESC		
 LIMIT 10;		
+
+
+--Least revenue
+SELECT film.film_id,		
+      film.title,
+      film.release_year,
+      film.rating,
+      SUM(payment.amount) AS total_revenue
+FROM film		
+INNER JOIN inventory ON film.film_id = inventory.film_id		
+INNER JOIN rental ON inventory.inventory_id = rental.inventory_id		
+INNER JOIN payment ON rental.rental_id = payment.rental_id		
+GROUP BY film.film_id		
+ORDER BY total_revenue DESC		
+LIMIT 10;	
+
+
+-- Question for further analysis
+-- What are the categories for the top 10 movies?
+WITH top_movies_cte(film_id,			
+		title,	
+		year,	
+		rating,	
+		total) 	
+		AS (SELECT film.film_id,	
+			film.title,
+			film.release_year,
+			film.rating,
+			SUM(payment.amount) AS total_revenue
+		FROM film	
+		INNER JOIN inventory ON film.film_id = inventory.film_id	
+		INNER JOIN rental ON inventory.inventory_id = rental.inventory_id	
+		INNER JOIN payment ON rental.rental_id = payment.rental_id	
+		GROUP BY film.film_id	
+		ORDER BY total_revenue DESC	
+		LIMIT 10)	
+SELECT category.name,			
+		film.title,	
+		total	
+FROM category			
+INNER JOIN film_category ON category.category_id = film_category.category_id			
+INNER JOIN film ON film_category.film_id = film.film_id			
+INNER JOIN top_movies_cte ON film.film_id = top_movies_cte.film_id			
+GROUP BY category.name, film.title,total			
+ORDER BY total DESC;			
+
+
