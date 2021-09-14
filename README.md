@@ -1,4 +1,6 @@
-# sql-analysis-rockbuster-films
+# SQL Analysis for Rockbuster Films
+
+<p align="center"><img src="Rockbusterlogo-white.png" alt="Rockbuster logo"></p>
 Descriptive analysis based on five business questions posed by executives of a fictitious film company called Rockbuster.
 
 # Project Brief
@@ -21,7 +23,7 @@ the main questions they’d l ike to answer:
   </ol>
   
 ## Dataset
-
+Fictitious dataset for Rockbuster films
 
 ## Deliverables
 
@@ -30,3 +32,4 @@ Queries
 Data dictionary 
 
 Presentation - [Answer to business question 5](https://public.tableau.com/app/profile/kensuke2842/viz/TopCountriesandTotalPayments/BQ5-Top_Countries)
+<p align="center"><img src="tableau.png" alt="Rockbuster logo"></p>
